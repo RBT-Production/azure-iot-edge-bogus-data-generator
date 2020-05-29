@@ -11,8 +11,6 @@ namespace IoTEdgeBogusDataGenerator
 {
     public class BogusDataFactory
     {
-
-
         public static Object CreateBogusData(int counter)
         {
             //Set the randomzier seed if you wish to generate repeatable data sets.
@@ -25,8 +23,9 @@ namespace IoTEdgeBogusDataGenerator
                 //Id is deterministic
                 .RuleFor(o => o.Id, f => counter)
                 //Generate Random value for motor load
-                .RuleFor(o => o.MotorLoad, f => f.Random.Number(80, 90));
-            
+                .RuleFor(o => o.MotorLoad, f => f.Random.Number(80, 90))
+                //Generate Random value for current A fhase
+                .RuleFor(o => o.Ia, f => f.Random.Number(31, 41));
             return vehicleData.Generate();
         }
     }

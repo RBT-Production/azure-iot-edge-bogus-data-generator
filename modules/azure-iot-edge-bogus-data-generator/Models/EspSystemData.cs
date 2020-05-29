@@ -6,6 +6,7 @@ namespace IoTEdgeBogusDataGenerator.Models
    {
       public int Id { get; set; }
       public int MotorLoad { get; set; } 
+      public double Ia { get; set; } 
 
    }
 }
