@@ -63,7 +63,7 @@ namespace IoTEdgeBogusDataGenerator
             await ioTHubModuleClient.SetInputMessageHandlerAsync("input1", PipeMessage, ioTHubModuleClient);
         
             // as this runs in a loop we don't await
-            SendSimulationData(ioTHubModuleClient);
+            await SendSimulationData(ioTHubModuleClient);
 
         }
 

@@ -18,14 +18,14 @@ namespace IoTEdgeBogusDataGenerator
             //Set the randomzier seed if you wish to generate repeatable data sets.
             Randomizer.Seed = new Random(counter);
 
-            var vehicleData = new Faker<VehicleData>()
+            var vehicleData = new Faker<EspSystemData>()
                 //Ensure all properties have rules. By default, StrictMode is false
                 //Set a global policy by using Faker.DefaultStrictMode
                 .StrictMode(true)
                 //Id is deterministic
                 .RuleFor(o => o.Id, f => counter)
                 //Generate Random value for Speed
-                .RuleFor(o => o.Speed, f => f.Random.Number(0, 100))
+                .RuleFor(o => o.MotorLoad, f => f.Random.Number(80, 90))
                 //Generate Random value for CurrentLocation
                 .RuleFor(o => o.CurrentLocation, (f,o) => GetFakeCurrentLocation(f, o))
                 //Generate Random value for Destination
@@ -40,7 +40,7 @@ namespace IoTEdgeBogusDataGenerator
             return vehicleData.Generate();
         }
 
-        public static string GetFakeCurrentLocation(Faker f, VehicleData o)
+        public static string GetFakeCurrentLocation(Faker f, EspSystemData o)
         {
             //Latitude range( 49.95- 67.5) Longitude range( 25.10 – 135.05) 
             double LatitudeMin = 49.95;
@@ -64,7 +64,7 @@ namespace IoTEdgeBogusDataGenerator
                 CurrentLatitude = LatitudeRange * f.Random.Double() + CommonLatitude;
                 CurrentLongitude = LongitudeRange * f.Random.Double() + CommonLongitude;
 
-                o.Speed = f.Random.Number(0,25);
+                o.MotorLoad = f.Random.Number(0,25);
                 
                 Console.WriteLine("Correlation Forced");
             }
